@@ -14,6 +14,8 @@ st.set_page_config(
     page_icon="📃",
 )
 
+
+
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
 
@@ -26,12 +28,16 @@ class ChatCallbackHandler(BaseCallbackHandler):
     def on_llm_new_token(self, token, *args, **kwargs):
         self.message += token
         self.message_box.markdown(self.message)
+
+api_key = st.sidebar.text_input("Put your OpenAI API key")
+
 llm = ChatOpenAI(
     temperature=0.1,
     streaming=True,
     callbacks=[
         ChatCallbackHandler(),
     ],
+    openai_api_key=api_key
 )
 
 @st.cache_data(show_spinner="Embedding file...")
