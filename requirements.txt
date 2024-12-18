@@ -3,3 +3,4 @@ numpy
 pandas
 langchain
 langchain_community
+openai
