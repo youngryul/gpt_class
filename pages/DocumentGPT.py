@@ -48,8 +48,6 @@ llm = ChatOpenAI(
 def embed_file(file):
     file_content = file.read()
     file_path = f"./.cache/files/{file.name}"
-    directory = os.path.dirname(file_path)
-    os.makedirs(directory, exist_ok=True)
 
     with open(file_path, "wb") as f:
         f.write(file_content)
