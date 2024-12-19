@@ -7,3 +7,5 @@ openai
 tiktoken
 unstructured
 unstructured[pdf]
+nltk
+faiss-cpu
