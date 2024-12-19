@@ -6,7 +6,6 @@ langchain_community
 openai
 tiktoken
 unstructured
-unstructured[pdf]
 nltk
 faiss-cpu
 
