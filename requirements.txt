@@ -9,5 +9,4 @@ unstructured
 unstructured[pdf]
 nltk
 faiss-cpu
-os
-pickle
+
