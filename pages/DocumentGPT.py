@@ -50,6 +50,7 @@ def embed_file(file):
     file_path = f"./.cache/files/{file.name}"
     directory = os.path.dirname(file_path)
     os.makedirs(directory, exist_ok=True)
+
     with open(file_path, "wb") as f:
         f.write(file_content)
     cache_dir = LocalFileStore(f"./.cache/embeddings/{file.name}")
@@ -120,6 +121,7 @@ with st.sidebar:
         "Upload a .txt .pdf or .docx file",
         type=["pdf", "txt", "docx"],
     )
+    st.write("https://github.com/youngryul/gpt_class/blob/master/pages/DocumentGPT.py")
 
 if file:
     retriever = embed_file(file)
