@@ -9,9 +9,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.chat_models import ChatOpenAI
 from langchain.callbacks.base import BaseCallbackHandler
 import streamlit as st
-import os
-import nltk
-import pickle
+
 
 st.set_page_config(
     page_title="DocumentGPT",
