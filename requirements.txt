@@ -8,4 +8,5 @@ tiktoken
 unstructured
 nltk
 faiss-cpu
-
+opencv-python-headless
+scikit-learn
