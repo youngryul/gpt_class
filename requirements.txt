@@ -9,4 +9,3 @@ unstructured
 unstructured[pdf]
 nltk
 faiss-cpu
-cv2
