@@ -11,8 +11,7 @@ from langchain.callbacks.base import BaseCallbackHandler
 import streamlit as st
 
 import nltk
-nltk.download('punkt_tab')
-nltk.download('punkt')
+nltk.download('all')
 
 st.set_page_config(
     page_title="DocumentGPT",
