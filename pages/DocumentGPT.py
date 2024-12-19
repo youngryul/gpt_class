@@ -10,6 +10,8 @@ from langchain_community.chat_models import ChatOpenAI
 from langchain.callbacks.base import BaseCallbackHandler
 import streamlit as st
 
+import nltk
+nltk.download('punkt')
 
 st.set_page_config(
     page_title="DocumentGPT",
