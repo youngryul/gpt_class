@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 from operator import rshift
-from langchain.retrievers import WikipediaRetriever
+from langchain_community.retrievers import WikipediaRetriever
 from langchain_community.document_loaders import UnstructuredFileLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_community.chat_models import ChatOpenAI
@@ -31,6 +31,13 @@ llm = ChatOpenAI(
     callbacks=[
         StreamingStdOutCallbackHandler()
     ]
+).bind(
+    function_call={
+        "name": "create_quiz",
+    },
+    functions=[
+        function,
+    ],
 )
 
 def format_docs(docs):
@@ -71,7 +78,7 @@ questions_prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-questions_chain = {"context": format_docs} | questions_prompt | llm
+questions_chain = questions_prompt | llm
 
 formatting_prompt = ChatPromptTemplate.from_messages(
     [
@@ -201,6 +208,7 @@ formatting_prompt = ChatPromptTemplate.from_messages(
 formatting_chain = formatting_prompt | llm
 
 
+
 @st.cache_data(show_spinner="Loading file...")
 def split_file(file):
     file_content = file.read()
@@ -219,7 +227,7 @@ def split_file(file):
 @st.cache_data(show_spinner="Making quiz....")
 def run_quiz_chain(_docs, topic):  # 서명을 만들지 않게 해줌 (streamlit 한정문제)
     chain = {"context" : questions_chain} | formatting_chain | output_parser
-    return chain.invoke(_docs)
+    return chain.invoke()
 
 @st.cache_data(show_spinner="Searching Wikipedia...")
 def wiki_search(term):
@@ -264,6 +272,7 @@ if not docs:
     )
 else:
   response = run_quiz_chain(docs, topic if topic else file.name)
+  st.write(response)
   with st.form("questions_form"):
     for idx, question in enumerate(response["questions"]):
         st.write(question["question"])
