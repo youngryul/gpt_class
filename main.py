@@ -60,13 +60,16 @@ function = {
     },
 }
 
+api_key = st.sidebar.text_input("Put your OpenAI API key")
+
 llm = ChatOpenAI(
     temperature=0.1,
     model="gpt-3.5-turbo-1106",
     streaming=True,
     callbacks=[
         StreamingStdOutCallbackHandler()
-    ]
+    ],
+    openai_api_key=api_key
 ).bind(
     function_call={
         "name": "create_quiz",
