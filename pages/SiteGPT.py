@@ -9,8 +9,6 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableLambda, RunnablePassthrough
 import streamlit as st
 
-from main import question
-
 st.set_page_config(
     page_title="SiteGPT",
     page_icon="🎄",
