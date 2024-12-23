@@ -97,6 +97,7 @@ def choose_answer(inputs):
 
 
 @st.cache_data(show_spinner="Loading website...")
+@st.cache_resource()
 def load_website(url):
     loader = SitemapLoader(
         url,
